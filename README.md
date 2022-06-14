@@ -1,34 +1,65 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Dudi Storage
 
-## Getting Started
+This project is a frontend that can interact with a smart contract that allows the user to store tokens, and has a minimum balance required to allow withdrawals. The contracts are deployed on Ethereum's Ropsten Test Network. Only the contract owner can withdraw from it, so don't deposit tokens unless you're willing to loose them.  The site was built using NextJS and Web3JS, and styled with ChakraUI and Framer-Motion. The smart contracts were built with Solidity and deployed:
+- [DUDI Token](https://ropsten.etherscan.io/token/0x983ff1730e32bb8b59e24f77A392E6E5dC7831C7)
+- [TESTY Token](https://ropsten.etherscan.io/token/0x1c50474a84D984dF2482842E15b44E7E905A204D)
+- [DudiStorage](https://ropsten.etherscan.io/address/0xcCA044b3D2aE86F91FE738b39Ce75bdB241C1bB2)
 
-First, run the development server:
+## Prerequisite
 
-```bash
-npm run dev
-# or
-yarn dev
+- Node.js
+- npm or yarn
+
+## Demo
+
+A fully usable version of the app is hosted [here](https://dudi-storage.vercel.app).
+
+## Installation
+
+In order to run this app locally you must first clone the repository with:
+```sh
+git clone https://github.com/TheCryptoChad/DudiStorage.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then, navigate inside the directory and install the necessary dependencies with:
+```sh
+npm install
+```
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+Finally, you can run the app with:
+```sh
+npm start
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## Features
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- ### Connecting Wallets
 
-## Learn More
+The app allows for the use to connect their MetaMask wallet to interact with the smart contract. For the sake of simplicity, the contract will interact with the first account in the wallet. The app will indicate a successful connection via the `Connect Wallet` button displaying the connected wallet address.
 
-To learn more about Next.js, take a look at the following resources:
+![gif](./wallet.gif)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- ### Tokens & Balances
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+The app will display ETH and ERC-20 balances on both the contract and the connected wallet, which will update everytime an action is performed. The user is also able to choose between both ERC-20 tokens for the purpose of interacting with the contract.
 
-## Deploy on Vercel
+![gif](./token.gif)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- ### Deposits
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+The user can choose to deposit ETH or an ERC-20 token into the contract via the app. This deposit has no minimum amount.
+
+![gif](./deposit.gif)
+
+- ### Withdrawals
+
+The user can choose to withdraw ETH or an ERC-20 token from the contract via the app. This withdrawal will only proceed if there is a minimum of 0.5 ETH or 10 of the respective ERC-20 token. Remember that only the contract creator can withdraw tokens from it.
+
+![gif](./withdraw.gif)
+
+- ### Success/Error Messages
+
+Whenever a deposit or withdrawal is successful, a modal will emerge confirming it. In a similar manner, if there is any error during the interaction, an error modal will display what went wrong.
+
+![gif](./success.gif)
+![gif](./error.gif)
