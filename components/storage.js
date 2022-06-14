@@ -217,9 +217,9 @@ const DudiStorage = () => {
                 const formattedErcAmount = await web3.utils.fromWei(ercAmount)
                 updateBalances()
                 setSuccess(`You've successfully deposited ${formatBalances(formattedErcAmount)} TESTY tokens.`)
+                onSuccessOpen()
             } catch(err) {
                 setError(err.message)
-                onSuccessOpen()
                 onErrorOpen()
             }
         }
